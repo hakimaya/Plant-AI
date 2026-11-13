@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouveau projet | PlanIt AI</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<header class="border-b bg-white">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 p-4">
+    <a href="index.html" class="text-xl font-bold">PLANIT AI</a>
+    <nav class="flex gap-4">
+      <a href="index.html">Dashboard</a>
+      <a href="new-project.html" aria-current="page" class="font-bold text-indigo-700">Nouveau projet</a>
+    </nav>
+    <button id="settings" type="button" class="rounded border px-3 py-2">Paramètres IA</button>
+  </div>
+</header>
+<dialog id="settings-dialog" class="m-auto rounded border p-5">
+  <h2 class="mb-2 font-bold">Paramètres IA</h2>
+  <p class="mb-4">Le mode démo est actif. Aucune clé API n’est nécessaire.</p>
+  <form method="dialog"><button class="rounded border px-3 py-2">Fermer</button></form>
+</dialog>
+<main class="mx-auto max-w-xl p-4">
+  <h1 class="mb-4 text-2xl font-bold">Nouveau projet</h1>
+  <form id="project-form" novalidate class="space-y-4 rounded border border-slate-300 bg-white p-4">
+    <div>
+      <label for="name" class="mb-1 block">Nom du projet</label>
+      <input id="name" name="name" required aria-describedby="name-error" class="w-full rounded border border-slate-400 p-2" type="text">
+      <p id="name-error" class="text-sm text-red-700"></p>
+    </div>
+    <div>
+      <label for="description" class="mb-1 block">Description</label>
+      <input id="description" name="description" required aria-describedby="description-error" class="w-full rounded border border-slate-400 p-2" type="text">
+      <p id="description-error" class="text-sm text-red-700"></p>
+    </div>
+    <div>
+      <label for="brief" class="mb-1 block">Brief complet</label>
+      <textarea id="brief" name="brief" required aria-describedby="brief-error" class="w-full rounded border border-slate-400 p-2" rows="4"></textarea>
+      <p id="brief-error" class="text-sm text-red-700"></p>
+    </div>
+    <div>
+      <label for="duration" class="mb-1 block">Durée (en jours)</label>
+      <input id="duration" name="duration" required aria-describedby="duration-error" class="w-full rounded border border-slate-400 p-2" type="number" min="1" step="1">
+      <p id="duration-error" class="text-sm text-red-700"></p>
+    </div>
+    <div>
+      <label for="developers" class="mb-1 block">Nombre de développeurs</label>
+      <input id="developers" name="developers" required aria-describedby="developers-error" class="w-full rounded border border-slate-400 p-2" type="number" min="1" step="1">
+      <p id="developers-error" class="text-sm text-red-700"></p>
+    </div>
+    <div>
+      <label for="technologies" class="mb-1 block">Technologies</label>
+      <input id="technologies" name="technologies" required aria-describedby="technologies-error" class="w-full rounded border border-slate-400 p-2" type="text">
+      <p id="technologies-error" class="text-sm text-red-700"></p>
+    </div>
+    <div>
+      <label for="difficulty" class="mb-1 block">Niveau de difficulté</label>
+      <select id="difficulty" name="difficulty" required aria-describedby="difficulty-error" class="w-full rounded border border-slate-400 p-2">
+        <option value="">Choisir un niveau</option>
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+      </select>
+      <p id="difficulty-error" class="text-sm text-red-700"></p>
+    </div>
+    <button id="generate" type="submit" disabled class="rounded bg-indigo-600 px-4 py-2 text-white disabled:opacity-50">Générer le plan de développement</button>
+    <p id="generation" role="status">Prêt à générer en mode démo.</p>
+    <button id="retry" type="button" hidden class="rounded border px-3 py-2">Réessayer</button>
+  </form>
+  <details id="result" hidden class="mt-4 rounded border bg-white p-4">
+    <summary>Plan démo et prompt construit</summary>
+    <ul id="demo-tasks" class="list-disc pl-6"></ul>
+    <pre id="prompt" class="mt-4 whitespace-pre-wrap break-words text-sm"></pre>
+    <a href="index.html" class="mt-4 block text-indigo-700 underline">Voir le Dashboard</a>
+  </details>
+</main>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

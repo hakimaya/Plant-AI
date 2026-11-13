@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | PlanIt AI</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+<header class="border-b bg-white">
+  <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 p-4">
+    <a href="index.html" class="text-xl font-bold">PLANIT AI</a>
+    <nav class="flex gap-4">
+      <a href="index.html" aria-current="page" class="font-bold text-indigo-700">Dashboard</a>
+      <a href="new-project.html">Nouveau projet</a>
+    </nav>
+    <button id="settings" type="button" class="rounded border px-3 py-2">Paramètres IA</button>
+  </div>
+</header>
+<dialog id="settings-dialog" class="m-auto rounded border p-5">
+  <h2 class="mb-2 font-bold">Paramètres IA</h2>
+  <p class="mb-4">Le mode démo est actif. Aucune clé API n’est nécessaire.</p>
+  <form method="dialog"><button class="rounded border px-3 py-2">Fermer</button></form>
+</dialog>
+<main class="mx-auto max-w-5xl p-4">
+  <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+    <h1 class="text-2xl font-bold">Mes projets</h1>
+    <a href="new-project.html" class="rounded bg-indigo-600 px-4 py-2 text-white">Nouveau projet</a>
+  </div>
+  <p id="empty">Aucun projet pour le moment, créez-en un pour générer votre premier plan.</p>
+  <section id="projects" class="grid gap-4 sm:grid-cols-2" aria-label="Liste des projets"></section>
+  <template id="project-card">
+    <article class="space-y-2 rounded border border-slate-300 bg-white p-4">
+      <h2 class="text-lg font-bold"></h2>
+      <p class="description"></p>
+      <p class="counts text-sm"></p>
+      <label class="block text-sm">
+        <span class="percentage"></span>
+        <progress max="100" class="block w-full accent-indigo-600"></progress>
+      </label>
+      <button type="button" class="text-red-700">Supprimer</button>
+    </article>
+  </template>
+</main>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Préparer le projet",
+      "description": "Préparer le projet selon les besoins du brief.",
+      "userStories": [
+        "En tant qu’utilisateur, je veux suivre les étapes pour terminer mon projet."
+      ],
+      "acceptanceCriteria": [
+        "Le résultat de la tâche peut être vérifié."
+      ],
+      "priority": "Medium",
+      "importance": "Medium",
+      "size": "S",
+      "estimatedTime": 2,
+      "deadline": "Day 1",
+      "status": "Done",
+      "dependencies": []
+    },
+    {
+      "id": "TASK-002",
+      "title": "Créer les interfaces",
+      "description": "Créer les interfaces selon les besoins du brief.",
+      "userStories": [
+        "En tant qu’utilisateur, je veux suivre les étapes pour terminer mon projet."
+      ],
+      "acceptanceCriteria": [
+        "Le résultat de la tâche peut être vérifié."
+      ],
+      "priority": "Medium",
+      "importance": "Medium",
+      "size": "S",
+      "estimatedTime": 2,
+      "deadline": "Day 1",
+      "status": "To Do",
+      "dependencies": [
+        "TASK-001"
+      ]
+    },
+    {
+      "id": "TASK-003",
+      "title": "Vérifier le parcours",
+      "description": "Vérifier le parcours selon les besoins du brief.",
+      "userStories": [
+        "En tant qu’utilisateur, je veux suivre les étapes pour terminer mon projet."
+      ],
+      "acceptanceCriteria": [
+        "Le résultat de la tâche peut être vérifié."
+      ],
+      "priority": "Medium",
+      "importance": "Medium",
+      "size": "S",
+      "estimatedTime": 2,
+      "deadline": "Day 1",
+      "status": "To Do",
+      "dependencies": [
+        "TASK-002"
+      ]
+    }
+  ]
+}
