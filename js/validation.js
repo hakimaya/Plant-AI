@@ -1,18 +1,11 @@
-export function validateProject(project) {
-  const errors = {};
-  for (const field of ["name", "description", "brief", "technologies"]) {
-    if (!/\S/.test(project[field])) {
-      errors[field] = "Ce champ est obligatoire.";
-    }
-  }
-  for (const field of ["duration", "developers"]) {
-    const value = Number(project[field]);
-    if (!/^\d+$/.test(project[field]) || !Number.isSafeInteger(value) || value < 1) {
-      errors[field] = "Saisissez un entier supérieur ou égal à 1.";
-    }
-  }
-  if (!["Beginner", "Intermediate", "Advanced"].includes(project.difficulty)) {
-    errors.difficulty = "Choisissez un niveau de difficulté.";
-  }
-  return errors;
+export function validation(projectform){
+    let isValid = true;
+
+    if(projectform.name == "" || projectform.description == "" || projectform.brief == ""|| projectform.technologies == "")
+    {isValid = false}
+    if(Number(projectform.duration) < 1|| Number(projectform.developers) < 1 || !Number.isInteger(Number(projectform.duration)) || !Number.isInteger(Number(projectform.developers)))
+    {isValid = false}
+    if(projectform.difficulty != "Beginner" &&  projectform.difficulty != "Intermediate" && projectform.difficulty != "Advanced")
+    {isValid = false}
+     return isValid;
 }

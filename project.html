@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <header class="border-b bg-white">
+        <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 p-4">
+            <a href="index.html" class="text-xl font-bold">PLANIT AI</a>
+            <nav class="flex gap-4">
+            <a href="index.html">Dashboard</a>
+            <a href="new-project.html" aria-current="page" class="font-bold text-indigo-700">Nouveau projet</a>
+            </nav>
+            <button id="settings" type="button" class="rounded border px-3 py-2">Paramètres IA</button>
+        </div>
+    </header>
+<section class="mt-8">
+
+    <div class="mb-5 flex items-center justify-between">
+        <h2 class="text-xl font-bold">Task Board</h2>
+        <span id="total-tasks" class="text-sm text-gray-500">
+            0 tasks
+        </span>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+
+        <div class="rounded-lg bg-gray-100 p-4">
+
+            <div class="mb-4 flex items-center justify-between">
+                <h3 class="font-semibold">To Do</h3>
+                <span id="todo-count" class="rounded-full bg-white px-3 py-1 text-sm">
+                    0
+                </span>
+            </div>
+
+            <div id="todo-tasks" class="min-h-40 space-y-3"></div>
+
+        </div>
+
+        <div class="rounded-lg bg-blue-50 p-4">
+
+            <div class="mb-4 flex items-center justify-between">
+                <h3 class="font-semibold">In Progress</h3>
+                <span id="progress-count" class="rounded-full bg-white px-3 py-1 text-sm">
+                    0
+                </span>
+            </div>
+
+            <div id="progress-tasks" class="min-h-40 space-y-3"></div>
+
+        </div>
+
+        <div class="rounded-lg bg-green-50 p-4">
+
+            <div class="mb-4 flex items-center justify-between">
+                <h3 class="font-semibold">Done</h3>
+                <span id="done-count" class="rounded-full bg-white px-3 py-1 text-sm">
+                    0
+                </span>
+            </div>
+
+            <div id="done-tasks" class="min-h-40 space-y-3"></div>
+
+        </div>
+
+    </div>
+</section>
+
+<template id="task-card-template">
+    <button
+        type="button"
+        class="task-card w-full rounded-lg border border-gray-200 bg-white p-4 text-left shadow-sm hover:border-indigo-400">
+
+        <p class="task-id mb-2 text-xs text-gray-500"></p>
+
+        <h4 class="task-title mb-3 font-semibold"></h4>
+
+        <div class="mb-2 flex flex-wrap gap-2 text-xs">
+            <span class="task-priority rounded bg-orange-100 px-2 py-1"></span>
+            <span class="task-size rounded bg-gray-100 px-2 py-1"></span>
+            <span class="task-hours rounded bg-gray-100 px-2 py-1"></span>
+            <span class="task-deadline rounded bg-gray-100 px-2 py-1"></span>
+        </div>
+
+        <p class="task-dependencies text-xs text-gray-500"></p>
+
+    </button>
+</template>
+
+</body>
+</html>
