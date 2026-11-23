@@ -1,5 +1,7 @@
 import { validation } from "./validation.js";
-import { ui } from "./ui.js";
+import { ui,affichercounter,affichertask } from "./ui.js";
 import { fetchtasks } from "./api.js";
 ui();
-fetchtasks();
+let tasks = await fetchtasks();
+affichercounter(tasks);
+affichertask(tasks);
