@@ -11,9 +11,8 @@ export async function fetchtasks(){
         if(!response.ok) throw new Error(response.status);
         let tasks = await response.json();
         console.log(tasks);
-        function affichertask()
+        function affichercounter()
         {
-            let total = 0;
             let todo = 0;
             let done = 0;
             let progress = 0;
@@ -26,12 +25,84 @@ export async function fetchtasks(){
                 {
                     todo ++;
                 }
+                else if(task.status === "In Progress")
+                {
+                    progress++;
+                }
             }
-            totaltask.textContent = done + todo;
+            totaltask.textContent = done + todo + progress;
             todocount.textContent = todo;
             donecount.textContent = done;
+            progresscount.textContent = progress;
+        }
+
+        function affichertask()
+        {
+            const todotask = document.getElementById("todo-tasks");
+            const progresstask = document.getElementById("progress-tasks");
+            const donetask = document.getElementById("done-tasks");
+
+            let contenutodo = "";
+            let contenuprogress = "";
+            let contenudone = "";
+
+            for(let task of tasks.tasks)
+            {
+                if(task.status === "Done")
+                {
+                    contenudone += `<article class="task-card border border-slate-300 rounded-lg bg-white p-4 mb-3">
+                    <span class="task-id">${task.id}</span>
+
+                    <h3 class="task-title">${task.title}</h3>
+
+                    <div class="task-info">
+                        <span class="task-priority">${task.priority}</span>
+                        <span class="task-time">${task.estimatedTime}</span>
+                        <span class="task-deadline">${task.deadline}</span>
+                    </div>
+                    </article>`
+                }
+            }
+            donetask.innerHTML = contenudone;
+            for(let task of tasks.tasks)
+            {
+                if(task.status === "To Do")
+                {
+                    contenutodo += `<article class="task-card border border-slate-300 rounded-lg bg-white p-4 mb-3">
+                    <span class="task-id">${task.id}</span>
+
+                    <h3 class="task-title">${task.title}</h3>
+
+                    <div class="task-info">
+                        <span class="task-priority">${task.priority}</span>
+                        <span class="task-time">${task.estimatedTime}</span>
+                        <span class="task-deadline">${task.deadline}</span>
+                    </div>
+                    </article>`
+                }
+            }
+            todotask.innerHTML = contenutodo;
+            for(let task of tasks.tasks)
+            {
+                if(task.status === "In Progress")
+                {
+                    contenuprogress += `<article class="task-card border border-slate-300 rounded-lg bg-white p-4 mb-3">
+                    <span class="task-id">${task.id}</span>
+
+                    <h3 class="task-title">${task.title}</h3>
+
+                    <div class="task-info">
+                        <span class="task-priority">${task.priority}</span>
+                        <span class="task-time">${task.estimatedTime}</span>
+                        <span class="task-deadline">${task.deadline}</span>
+                    </div>
+                    </article>`
+                }
+            }
+            progresstask.innerHTML = contenuprogress;
         }
         affichertask();
+        affichercounter();
     }
     
     catch(error){
