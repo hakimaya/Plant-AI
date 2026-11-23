@@ -15,15 +15,19 @@ function getdata(){
 }
 export function ui()
 {
-    projectformulaire.addEventListener("input", function(){
+    if(projectformulaire)
+    {
+        projectformulaire.addEventListener("input", function(){
         let p = getdata();
-    if(!validation(p)){generatebutton.disabled = true}
-    if(validation(p)){generatebutton.disabled = false}
-    })
+        if(!validation(p)){generatebutton.disabled = true}
+        if(validation(p)){generatebutton.disabled = false}
+        })
 
-    projectformulaire.addEventListener("submit",function(event){
-        event.preventDefault();
-        let p = getdata();
-        if(!validation(p)){return;}
-    })
+        projectformulaire.addEventListener("submit",function(event){
+            event.preventDefault();
+            let p = getdata();
+            if(!validation(p)){return;}
+        })
+    }
+
 }
