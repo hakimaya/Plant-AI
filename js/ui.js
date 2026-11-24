@@ -38,12 +38,14 @@ export async function ui()
                 generationp.textContent = "Génération du plan en cours...";
                 generatebutton.disabled = true;
                 let tasks = await fetchtasks();
-                let project = {p,tasks};
                 if(validationdata(tasks,p.duration))
                 {
-                    affichercounter(tasks);
-                    affichertask(tasks);
-                }
+                    const project = {
+                        ...p,
+                        id: crypto.randomUUID(),
+                        tasks: tasks.tasks
+                    };
+            }
     
             }
         })
