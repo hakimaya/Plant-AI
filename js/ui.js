@@ -1,7 +1,10 @@
-import { validation } from "./validation.js";
+import { validation,validationdata } from "./validation.js";
+import { fetchtasks } from "./api.js";
 const projectformulaire = document.querySelector("#project-form");
 const generatebutton = document.getElementById("generate");
 const generationp = document.getElementById("generation");
+
+//getting data from formulaire 
 function getdata(){
     let projectform = {
     name : document.getElementById("name").value.trim(),
@@ -14,7 +17,10 @@ function getdata(){
     }
     return projectform;
 }
-export function ui()
+
+
+//disbale end enable button and submit 
+export async function ui()
 {
     if(projectformulaire)
     {
@@ -24,17 +30,28 @@ export function ui()
         if(validation(p)){generatebutton.disabled = false}
         })
 
-        projectformulaire.addEventListener("submit",function(event){
+        projectformulaire.addEventListener("submit",async function(event){
             event.preventDefault();
             let p = getdata();
             if(!validation(p)){return;}
             else{
                 generationp.textContent = "Génération du plan en cours...";
                 generatebutton.disabled = true;
+                let tasks = await fetchtasks();
+                let project = {p,tasks};
+                if(validationdata(tasks,p.duration))
+                {
+                    affichercounter(tasks);
+                    affichertask(tasks);
+                }
+    
             }
         })
     }
 }
+
+
+//counter counting number of tasks 
 const totaltask = document.getElementById("total-tasks");
 const todocount = document.getElementById("todo-count");
 const progresscount = document.getElementById("progress-count");
@@ -68,6 +85,8 @@ export function affichercounter(tasks)
     
 }
 
+
+//affichage des tasks
 export function affichertask(tasks)
 {
     if(totaltask)
@@ -137,3 +156,5 @@ export function affichertask(tasks)
     }
 
 }
+
+
