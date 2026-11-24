@@ -1,6 +1,7 @@
 import { validation } from "./validation.js";
 const projectformulaire = document.querySelector("#project-form");
 const generatebutton = document.getElementById("generate");
+const generationp = document.getElementById("generation");
 function getdata(){
     let projectform = {
     name : document.getElementById("name").value.trim(),
@@ -27,6 +28,10 @@ export function ui()
             event.preventDefault();
             let p = getdata();
             if(!validation(p)){return;}
+            else{
+                generationp.textContent = "Génération du plan en cours...";
+                generatebutton.disabled = true;
+            }
         })
     }
 }
