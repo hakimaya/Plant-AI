@@ -1,6 +1,6 @@
 import { validation,validationdata } from "./validation.js";
 import { fetchtasks } from "./api.js";
-import { saveproject } from "./storage.js";
+import { saveproject,deleteproject } from "./storage.js";
 
 
 const projectformulaire = document.querySelector("#project-form");
@@ -204,10 +204,22 @@ export function afficherprojects(projects)
                class="text-indigo-600">
                 Open Project
             </a>
+            <button type="button" class="delete-project" data-id="${project.id}">
+                Supprimer
+            </button>
         </article>
         `;
     }
     cardcontainer.innerHTML = content;
+    const deletebutton = document.querySelectorAll(".delete-project");
+    deletebutton.forEach((button) => {
+        button.addEventListener("click", function()
+        {
+            deleteproject(button.dataset.id);
+            window.location.reload();
+        });
+    });
+    
 } 
 export function checkprojects(projects)
 {
