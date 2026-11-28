@@ -1,7 +1,13 @@
-import { validation } from "./validation.js";
-import { ui,affichercounter,affichertask } from "./ui.js";
+import { validation, validationdata } from "./validation.js";
+import { getdata,ui,affichercounter,affichertask } from "./ui.js";
 import { fetchtasks } from "./api.js";
+import { getprojectbyid } from "./storage.js";
 ui();
-let tasks = await fetchtasks();
-affichercounter(tasks);
-affichertask(tasks);
+if (window.location.pathname.endsWith("/project.html")) {
+    const params = new URLSearchParams(window.location.search);
+    let p = getprojectbyid(params.get("id"));
+    if (p) {
+        affichercounter(p);
+        affichertask(p);
+    }
+}
