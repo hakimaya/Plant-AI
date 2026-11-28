@@ -1,7 +1,6 @@
-import { validation, validationdata } from "./validation.js";
-import { getdata,ui,affichercounter,affichertask } from "./ui.js";
-import { fetchtasks } from "./api.js";
-import { getprojectbyid } from "./storage.js";
+import { getdata,ui,affichercounter,affichertask,afficherprojects,checkprojects } from "./ui.js";
+import { getprojectbyid,getprojects } from "./storage.js";
+import { validation } from "./validation.js";
 ui();
 if (window.location.pathname.endsWith("/project.html")) {
     const params = new URLSearchParams(window.location.search);
@@ -10,4 +9,17 @@ if (window.location.pathname.endsWith("/project.html")) {
         affichercounter(p);
         affichertask(p);
     }
+}
+if(window.location.pathname === "/" || window.location.pathname.endsWith("/index.html"))
+{
+    const empty = document.getElementById("empty");
+    if(checkprojects(getprojects()))
+    {
+        empty.classList.add("hidden");
+    }
+    else
+    {
+        empty.classList.remove("hidden");
+    }
+    afficherprojects(getprojects());
 }

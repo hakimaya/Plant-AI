@@ -165,3 +165,43 @@ export function affichertask(tasks)
 }
 
 
+export function afficherprojects(projects)
+{
+    const cardcontainer = document.getElementById("projects-container");
+    let content = "";
+    for(let project of projects)
+    {
+        content += `
+        <article class="space-y-2 rounded border border-slate-300 bg-white p-4">
+            <h2 class="text-lg font-bold">${project.name}</h2>
+
+            <p class="description">${project.description}</p>
+
+            <p class="text-sm">${project.technologies}</p>
+
+            <p class="text-sm">Difficulty: ${project.difficulty}</p>
+
+            <p class="counts text-sm">
+                Total tasks: ${project.tasks.length}
+            </p>
+
+            <a href="./project.html?id=${project.id}"
+               class="text-indigo-600">
+                Open Project
+            </a>
+        </article>
+        `;
+    }
+    cardcontainer.innerHTML = content;
+} 
+export function checkprojects(projects)
+{
+    if(projects.length != 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
