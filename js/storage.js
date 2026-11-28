@@ -8,8 +8,15 @@ export function saveproject(project){
 
 export function getprojectbyid(id)
 {
-    const saved = localStorage.getItem("project") || "[]";
+    const saved = localStorage.getItem("projects") || "[]";
     const projects = JSON.parse(saved);
     
     return projects.find(p=>p.id === id);
+}
+
+export function getprojects()
+{
+    const saved = localStorage.getItem("projects") || "[]";
+    const projects = JSON.parse(saved);
+    return projects;
 }
