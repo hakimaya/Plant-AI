@@ -167,10 +167,25 @@ export function affichertask(tasks)
 
 export function afficherprojects(projects)
 {
+    //Progress = (Number of completed tasks / Total number of tasks) * 100
     const cardcontainer = document.getElementById("projects-container");
     let content = "";
+    let pourcentage = 0;
     for(let project of projects)
     {
+        let counter = 0;
+        for(let task of project.tasks)
+        {
+            if(task.status === "Done")
+            {
+                counter++;
+            }
+        }
+        if(project.tasks.length === 0)
+        {
+            pourcentage = 0;
+        }
+        else{pourcentage = Math.round((counter / project.tasks.length) * 100);}
         content += `
         <article class="space-y-2 rounded border border-slate-300 bg-white p-4">
             <h2 class="text-lg font-bold">${project.name}</h2>
@@ -184,7 +199,7 @@ export function afficherprojects(projects)
             <p class="counts text-sm">
                 Total tasks: ${project.tasks.length}
             </p>
-
+            <p class="text-sm">Progress: ${pourcentage}%</p>
             <a href="./project.html?id=${project.id}"
                class="text-indigo-600">
                 Open Project

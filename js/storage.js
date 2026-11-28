@@ -20,3 +20,18 @@ export function getprojects()
     const projects = JSON.parse(saved);
     return projects;
 }
+
+export function deleteproject(id)
+{
+    const saved = localStorage.getItem("projects") || "[]";
+    const projects = JSON.parse(saved);
+    for(let project of projects)
+    {
+        if(project.id === id)
+        {
+            projects.splice(projects.indexOf(project),1);
+            break;
+        }
+    }
+    localStorage.setItem(("projects"), JSON.stringify(projects));
+}
