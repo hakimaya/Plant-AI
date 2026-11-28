@@ -1,11 +1,14 @@
 import { validation,validationdata } from "./validation.js";
 import { fetchtasks } from "./api.js";
+import { saveproject } from "./storage.js";
+
+
 const projectformulaire = document.querySelector("#project-form");
 const generatebutton = document.getElementById("generate");
 const generationp = document.getElementById("generation");
 
 //getting data from formulaire 
-function getdata(){
+export function getdata(){
     let projectform = {
     name : document.getElementById("name").value.trim(),
     description : document.getElementById("description").value.trim(),
@@ -45,7 +48,9 @@ export async function ui()
                         id: crypto.randomUUID(),
                         tasks: tasks.tasks
                     };
-            }
+                    saveproject(project);
+                    window.location.href = `./project.html?id=${project.id}`;
+                }
     
             }
         })
